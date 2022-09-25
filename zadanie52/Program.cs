@@ -7,12 +7,10 @@
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
 Console.Clear();
-int a = 3; //rows
-int b = 6;//colums
 
-int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
+double[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 {
-    int[,] matrix = new int[rows, columns];
+    double[,] matrix = new double[rows, columns];
 
     Random rnd = new Random();
     for (int i = 0; i < matrix.GetLength(0); i++)
@@ -25,7 +23,7 @@ int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
     return matrix;
 }
 
-void PrintMatrix(int[,] matrix)
+void PrintMatrix(double[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
@@ -38,14 +36,14 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-double[] AverageSumm(int[,] matrix, int c, int d)
+double[] AverageSumm(double[,] matrix)
 {
-    double[] average = new double[d];
+    double[] average = new double[matrix.GetLength(1)];
     for (int i = 0; i < matrix.GetLength(1); i++)
     {
         for (int j = 0; j < matrix.GetLength(0); j++)
         {
-            average[i] = average[i] + matrix[j, i]; //average[i] = (average[i] + matrix[j, i])/c-выдает какую-то ерунду... Почему, что не так?
+            average[i] = Math.Round((average[i] + matrix[j, i]/matrix.GetLength(0)),1);
         }
     }
     return average;
@@ -55,12 +53,12 @@ void PrintAverageSumm(double[] summ)
 {
     for (int i = 0; i < summ.Length; i++)
     {
-        Console.Write($"{summ[i],4} ");
+        Console.Write($"{summ[i],3} ");
     }
 }
 
-int[,] array2D = CreateMatrixRndInt(a, b, -9, 9);
+double[,] array2D = CreateMatrixRndInt(3, 4, -9, 9);
 PrintMatrix(array2D);
-Console.WriteLine("-----------------------------");
-double[] summresult = AverageSumm(array2D, a, b);
+Console.WriteLine("Среднее арифметическое каждого столбца:");
+double[] summresult = AverageSumm(array2D);
 PrintAverageSumm(summresult);
