@@ -57,7 +57,7 @@ void PrintAverageSumm(double[] summ)
     }
 }
 
-double[,] array2D = CreateMatrixRndInt(3, 4, -9, 9);
+double[,] array2D = CreateMatrixRndInt(3, 4, 0, 9);
 PrintMatrix(array2D);
 Console.WriteLine("Среднее арифметическое каждого столбца:");
 double[] summresult = AverageSumm(array2D);
